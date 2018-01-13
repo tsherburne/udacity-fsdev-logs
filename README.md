@@ -87,7 +87,7 @@ If needed, change the database connection string in `report.py`
 ```
 db = psycopg2.connect(database="news", user="postgres", password="postgres1234")
 ```
-#### Database Overview
+### Database Overview
 The schema for the reports database is shown here:
 ![Image](class-diagram.png)
 
