@@ -4,10 +4,14 @@ for the [Udacity Fullstack Developers Nano Degree](https://www.udacity.com/cours
 ### Table of Contents
 
 * [Installation](#installation)
+    * [Setup AWS Cloud 9 - If used instead of Vagrant](#setup-aws-c9)
+    * [Project Setup](#project-setup)
+* [Database Overview](#database-overview)
 * [Running](#running)
 
 ### Installation
 
+#### Setup AWS C9
 Environment Setup (Postgres on Amazon Clound 9 Instance):
 
 See reference: https://gist.github.com/dstroot/2920991
@@ -64,8 +68,8 @@ Load the Database
 ```
 psql -U postgres -d news -f newsdata.sql
 ```
-
-Create Views
+#### Project Setup
+Create Database Views
 ```
 create view daily_errors as select date_trunc('day', time) as date, count(*) as total from log where status = '404 NOT FOUND' group by date;
 create view daily_logs as select date_trunc('day', time) as date, count(*) as total from log group by date;                    
@@ -74,17 +78,21 @@ create view daily_logs as select date_trunc('day', time) as date, count(*) as to
 Clone the respository:
 
 ```
-git clone https://github.com/tsherburne/udacity-fsdev-portfolio.git
-cd udacity-fsdev-portfolio
-```
-By default the Web Server listens on port 8080.  If desired, the port can be updated in `server.js`
-### Running
-Start the Web Server:
-```
-npm start
+git clone https://github.com/tsherburne/udacity-fsdev-logs.git
+cd udacity-fsdev-logs
 ```
 
-Open a browser to view the Portfolio
+If needed, change the database connection string in `report.py`
+
 ```
-https://<host>:8080
+db = psycopg2.connect(database="news", user="postgres", password="postgres1234")
+```
+#### Database Overview
+The schema for the reports database is shown here:
+![Image](class-diagram.png)
+
+### Running
+Run the Report:
+```
+python report.py
 ```
