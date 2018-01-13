@@ -18,13 +18,13 @@ c.execute("select a.title, count(*) as num from log l, articles a \
 
 results = c.fetchall()
 
-print ("What are the most popular three articles of all time")
-print ("====================================================")
+print("What are the most popular three articles of all time")
+print("====================================================")
 
 for report_item in results:
     print("\"" + report_item[0] + "\" -- " + str(report_item[1]) + " views")
 
-print ("\n\n")
+print("\n\n")
 
 # Report #2 - Who are the most popular article authors of all time?
 c.execute("select name, sum(num) from \
@@ -36,13 +36,13 @@ c.execute("select name, sum(num) from \
     group by name order by sum desc")
 
 results = c.fetchall()
-print ("Report #2 - Most Popular Authors of All Time")
-print ("============================================")
+print("Report #2 - Most Popular Authors of All Time")
+print("============================================")
 
 for report_item in results:
     print(report_item[0] + " -- " + str(report_item[1]) + " views")
 
-print ("\n\n")
+print("\n\n")
 
 # Report #3 - On which days did more than 1% of requests lead to errors?
 c.execute("select l.date, l.total, e.total, \
@@ -52,8 +52,8 @@ c.execute("select l.date, l.total, e.total, \
   order by percent desc")
 
 results = c.fetchall()
-print ("Report #3 - Which days did more than 1% of requests lead to errors?")
-print ("===================================================================")
+print("Report #3 - Which days did more than 1% of requests lead to errors?")
+print("===================================================================")
 
 for report_item in results:
     print(
